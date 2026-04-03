@@ -1,0 +1,12 @@
+---
+const { role, org, place, period } = Astro.props;
+---
+
+<article class="timeline-item">
+  <div class="timeline-item__dot"></div>
+  <div>
+    <h3>{role}</h3>
+    <p>{org} · {place}</p>
+  </div>
+  <span>{period}</span>
+</article>

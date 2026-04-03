@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = [
+  {
+    title: "Life equilibrium",
+    href: "/blog/life-equilibrium/",
+    date: "2026-04-03",
+    excerpt: "A short note on balancing ambition, attention, and the shape of a sustainable life."
+  }
+];
+---
+
+<BaseLayout title="Blog | Juan Galvis" description="Notes and essays by Juan Galvis.">
+  <main class="page-shell page-shell--article">
+    <nav class="topbar" aria-label="Primary">
+      <a class="brand" href="/">Juan Galvis</a>
+      <div class="topbar__links">
+        <a href="/">Home</a>
+        <a href="/#work">Work</a>
+        <a href="/#connect">Connect</a>
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="section__heading">
+        <p class="section__eyebrow">Blog</p>
+        <h1 class="article__title">Notes, essays, and working thoughts.</h1>
+        <p class="section__intro">A space for ideas that sit between work, systems, technology, and life.</p>
+      </div>
+
+      <div class="blog-list">
+        {posts.map((post) => (
+          <a class="card card--link" href={post.href}>
+            <span class="card__meta">{post.date}</span>
+            <h3>{post.title}</h3>
+            <p>{post.excerpt}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,9 @@
+---
+const { label, href, description } = Astro.props;
+---
+
+<a class="card card--link" href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
+  <span class="card__meta">Link</span>
+  <h3>{label}</h3>
+  <p>{description}</p>
+</a>
