@@ -77,7 +77,7 @@ export const writingNotes = [
     title: "Life equilibrium",
     status: "Published",
     text: "A short note on balancing ambition, attention, and the shape of a sustainable life.",
-    href: "/blog/life-equilibrium/"
+    href: "blog/life-equilibrium/"
   },
   {
     title: "Designing products for industrial constraints",

@@ -14,18 +14,20 @@ import {
   timeline,
   writingNotes
 } from "../data/site.js";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={`${siteMeta.name} | Personal website`} description={siteMeta.description}>
   <main class="page-shell">
     <section class="hero">
       <nav class="topbar" aria-label="Primary">
-        <a class="brand" href="/">{siteMeta.name}</a>
+        <a class="brand" href={base}>{siteMeta.name}</a>
         <div class="topbar__links">
           <a href="#focus">Approach</a>
           <a href="#work">Work</a>
           <a href="#notes">Thoughts</a>
-          <a href="/blog/">Blog</a>
+          <a href={`${base}blog/`}>Blog</a>
           <a href="#background">Background</a>
           <a href="#connect">Connect</a>
         </div>
@@ -43,7 +45,7 @@ import {
 
           <div class="hero__actions">
             <a class="button button--primary" href="#work">Selected work</a>
-            <a class="button button--ghost" href="/blog/">Blog</a>
+            <a class="button button--ghost" href={`${base}blog/`}>Blog</a>
           </div>
         </div>
 
