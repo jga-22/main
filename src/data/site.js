@@ -1,11 +1,12 @@
 export const siteMeta = {
   name: "Juan Galvis",
-  title: "AI Product Manager building useful systems at the edge of product, data, and industry.",
+  title: "Welcome to my crib",
   description:
     "Personal website of Juan Galvis. Selected work, notes, and projects across AI products, digital strategy, and industrial systems.",
   email: "js.galvis22@gmail.com",
   phone: "+33 06 50 34 13 77",
-  linkedin: "https://www.linkedin.com/in/juan-galvis-c"
+  linkedin: "https://www.linkedin.com/in/juan-galvis-c",
+  github: "https://github.com/jga-22"
 };
 
 export const contactLinks = [
@@ -15,22 +16,17 @@ export const contactLinks = [
     icon: "linkedin"
   },
   {
-    label: "Email",
-    href: "mailto:js.galvis22@gmail.com",
-    icon: "mail"
-  },
-  {
-    label: "Phone",
-    href: "tel:+330650341377",
-    icon: "phone"
+    label: "GitHub",
+    href: "https://github.com/jga-22",
+    icon: "github"
   }
 ];
 
 export const intro = {
   eyebrow: "Juan Galvis",
-  headline: "I build AI products and digital systems that need to work beyond the demo.",
+  headline: "A personal space to share my thoughts and work.",
   body:
-    "My work sits between strategy and execution: shaping roadmaps, aligning teams, and turning technical possibilities into products that hold up in real environments."
+    "I'm Juan Galvis from Colombia, currently based in France. I have a background in engineering and product management, with a focus on digital transformation in industrial contexts. This site is a place for me to share my work, ideas, and notes on topics I'm passionate about."
 };
 
 export const focusAreas = [
@@ -133,5 +129,17 @@ export const timeline = [
     org: "Airbus",
     place: "Nantes, France",
     period: "2019 - 2020"
+  },
+  {
+    role: "Research and Development Engineer",
+    org: "University of Lorraine",
+    place: "Metz, France",
+    period: "2018 - 2019"
+  },
+  {
+    role: "Robotics & virtual twin intern",
+    org: "Dassault Systemes",
+    place: "Velizy-Villacoublay, France",
+    period: "2017"
   }
 ];

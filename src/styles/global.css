@@ -89,6 +89,12 @@ a {
   text-decoration: none;
 }
 
+.brand-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
 .brand {
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -109,10 +115,10 @@ a {
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 1.25rem 0 2rem;
 }
 
@@ -251,6 +257,10 @@ h3 {
   gap: 0.75rem;
 }
 
+.contact-bar--compact {
+  gap: 0.55rem;
+}
+
 .contact-bar__link {
   width: 2.9rem;
   height: 2.9rem;
@@ -261,6 +271,18 @@ h3 {
   border: 1px solid rgba(135, 173, 255, 0.18);
   background: rgba(255, 255, 255, 0.02);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-bar--compact .contact-bar__link {
+  width: 2.45rem;
+  height: 2.45rem;
+  background: transparent;
+  border-color: rgba(135, 173, 255, 0.12);
+}
+
+.contact-bar--compact .contact-bar__link svg {
+  width: 1.08rem;
+  height: 1.08rem;
 }
 
 .contact-bar__link:hover {
@@ -466,6 +488,10 @@ h3 {
   .topbar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .brand-cluster {
+    flex-wrap: wrap;
   }
 
   .timeline-item {
