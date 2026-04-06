@@ -6,6 +6,14 @@ import SiteNav from "../components/SiteNav.astro";
 const { frontmatter } = Astro.props;
 const title = `${frontmatter.title} | Juan Galvis`;
 const description = frontmatter.description ?? frontmatter.excerpt ?? "Blog post by Juan Galvis";
+const categoryLabels = {
+  life: "Life",
+  technology: "Technology",
+  "work-experience": "Work experience"
+};
+const articleMeta = frontmatter.category
+  ? `${categoryLabels[frontmatter.category] ?? frontmatter.category} · ${frontmatter.date}`
+  : frontmatter.date;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -14,7 +22,7 @@ const description = frontmatter.description ?? frontmatter.excerpt ?? "Blog post
 
     <article class="article">
       <header class="article__header">
-        <p class="article__eyebrow">{frontmatter.date}</p>
+        <p class="article__eyebrow">{articleMeta}</p>
         <h1 class="article__title">{frontmatter.title}</h1>
         {frontmatter.excerpt && <p class="article__excerpt">{frontmatter.excerpt}</p>}
       </header>

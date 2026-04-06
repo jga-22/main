@@ -1,0 +1,25 @@
+---
+const { paragraphs, body } = Astro.props;
+
+const normalizedParagraphs = Array.isArray(paragraphs) && paragraphs.length > 0
+  ? paragraphs
+  : typeof paragraphs === "string"
+    ? paragraphs
+        .split(/\r?\n\r?\n/)
+        .map((paragraph) => paragraph.trim())
+        .filter(Boolean)
+    : typeof body === "string"
+      ? body
+          .split(/\r?\n\r?\n/)
+          .map((paragraph) => paragraph.trim())
+          .filter(Boolean)
+      : [];
+---
+
+<section class="text-intro">
+  <div class="text-intro__body">
+    {normalizedParagraphs.map((paragraph) => (
+      <p>{paragraph}</p>
+    ))}
+  </div>
+</section>

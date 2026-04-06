@@ -176,6 +176,7 @@ h3 {
 }
 
 .hero__body,
+.text-intro__body p,
 .section__intro,
 .card p,
 .timeline-item p,
@@ -190,6 +191,25 @@ h3 {
 
 .hero__body {
   max-width: 41rem;
+}
+
+.text-intro {
+  width: min(100%, 46rem);
+  margin: 0 auto 4rem;
+}
+
+.text-intro__body {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.text-intro__body p {
+  margin: 0;
+  max-width: 42rem;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  line-height: 1.7;
+  text-align: left;
+  color: #dfe9ff;
 }
 
 .hero__actions {
@@ -312,6 +332,19 @@ h3 {
   width: 180px;
   height: 1px;
   background: linear-gradient(90deg, rgba(82, 229, 255, 0.5), transparent);
+}
+
+.section--plain {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.section--plain::before {
+  display: none;
 }
 
 .section__heading {

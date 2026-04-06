@@ -3,11 +3,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionBlock from "../components/SectionBlock.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteNav from "../components/SiteNav.astro";
+import TextIntro from "../components/TextIntro.astro";
 import TimelineItem from "../components/TimelineItem.astro";
 import {
-  focusAreas,
-  intro,
+  personalIntro,
   siteMeta,
+  timelineSection,
   timeline
 } from "../data/site.js";
 
@@ -20,28 +21,27 @@ import {
 
       <div class="hero__grid">
         <div class="hero__title-wrap">
-          <!-- <p class="hero__eyebrow">{intro.eyebrow}</p> -->
           <h1>{siteMeta.title}</h1>
         </div>
 
-        <div class="hero__copy">
-          <p class="hero__lede">{intro.headline}</p>
-          <p class="hero__body">{intro.body}</p>
-
-          <!-- <div class="hero__actions">
-            <a class="button button--primary" href="#work">Selected work</a>
-            <a class="button button--ghost" href={`${base}blog/`}>Blog</a>
-          </div> -->
-        </div>
+        <!-- <div class="hero__copy">
+          <p class="hero__lede">{hero.headline}</p>
+          <p class="hero__body">{hero.body}</p>
+        </div> -->
 
       </div>
     </section>
 
-    <SectionBlock
+    <TextIntro
+      paragraphs={personalIntro.paragraphs}
+      body={personalIntro.body}
+    />
+
+    <!-- <SectionBlock
       id="focus"
-      eyebrow="Approach"
-      title="I work on systems that need clarity, structure, and operational usefulness."
-      intro="The common thread across my work is simple: build things that can survive complexity without becoming vague, fragile, or theatrical."
+      eyebrow={focusSection.eyebrow}
+      title={focusSection.title}
+      intro={focusSection.intro}
     >
       <div class="grid grid--three">
         {focusAreas.map((area) => (
@@ -51,37 +51,12 @@ import {
           </article>
         ))}
       </div>
-    </SectionBlock>
-
-    <!-- <SectionBlock
-      id="work"
-      eyebrow="Selected work"
-      title="A few work streams that describe the problems I spend time on."
-      intro="This is a compact view of the environments, products, and decisions that shape my current practice."
-    >
-      <div class="grid grid--three">
-        {selectedWork.map((item) => (
-          <WorkCard {...item} />
-        ))}
-      </div>
-    </SectionBlock> -->
-
-    <!-- <SectionBlock
-      id="notes"
-      eyebrow="Thoughts"
-      title="Ideas I want to make explicit."
-      intro="Writing is part of the site on purpose. It is where product decisions, technical context, and broader patterns can be made visible."
-    >
-      <div class="grid grid--three">
-        {writingNotes.map((note) => (
-          <NoteCard {...note} />
-        ))}
-      </div>
     </SectionBlock> -->
 
     <SectionBlock
       id="background"
-      eyebrow="Background"
+      class="section--plain"
+      eyebrow={timelineSection.eyebrow}
     >
       <div class="timeline">
         {timeline.map((item) => (

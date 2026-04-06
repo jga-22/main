@@ -1,8 +1,8 @@
 ---
-const { id, eyebrow, title, intro } = Astro.props;
+const { id, eyebrow, title, intro, class: className } = Astro.props;
 ---
 
-<section class="section" id={id}>
+<section class:list={["section", className]} id={id}>
   <div class="section__heading">
     {eyebrow && <p class="section__eyebrow">{eyebrow}</p>}
     <h2>{title}</h2>

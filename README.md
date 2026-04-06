@@ -1,8 +1,8 @@
 # Juan Galvis Website
 
-Personal website built with Astro and published as a static site on GitHub Pages.
+Personal website built with Astro and published as a static site through GitHub Pages.
 
-## Main workflows
+## Development
 
 Install dependencies:
 
@@ -10,7 +10,7 @@ Install dependencies:
 npm install
 ```
 
-Run the local development server:
+Start the local development server:
 
 ```powershell
 npm run dev
@@ -22,71 +22,80 @@ Build the production site into `docs/`:
 npm run build
 ```
 
-Preview the production build locally:
+Preview the production build:
 
 ```powershell
 npm run preview
 ```
 
+## Content management
+
+Most site copy and structured homepage content live in `src/data/site.yaml`.
+
+This includes:
+
+- site metadata
+- social links
+- hero text
+- introduction text
+- focus areas
+- timeline entries
+
+The file `src/data/site.js` is only a small loader that reads the YAML file and exports the content to Astro components.
+
+Blog posts are auto-discovered from `src/content/blog/` through Astro content collections. Add a new `.md` or `.mdx` file there with the required frontmatter and it will appear automatically on `/blog/`.
+
+Required blog frontmatter:
+
+```yaml
+title: Your post title
+date: 2026-04-06
+category: life
+excerpt: Short summary for the blog list
+description: Optional SEO description
+```
+
+Allowed categories are `life`, `technology`, and `work-experience`.
+
+## Repository structure
+
+- `src/pages/`: Astro page entry points
+- `src/components/`: reusable UI pieces
+- `src/layouts/`: shared page layouts
+- `src/data/`: structured site content
+- `src/content/`: blog content collections
+- `src/styles/`: global styling
+- `public/`: static assets copied directly to the build
+- `docs/`: generated site output for GitHub Pages
+
+## Common edits
+
+- Update homepage text, links, and timeline data in `src/data/site.yaml`
+- Add blog posts in `src/content/blog/`
+- Adjust page composition in `src/pages/index.astro`
+- Add or refine reusable interface blocks in `src/components/`
+- Update global presentation in `src/styles/global.css`
+- Replace images or icons in `public/`
+
 ## Publishing
 
-GitHub Pages serves the generated files from `docs/`.
+The repo is configured to publish the generated static output from `docs/`.
 
-The normal publish flow is:
+Typical flow:
 
-1. Edit the source files in `src/` or `public/`.
-2. Test locally with `npm run dev`.
-3. Rebuild with `npm run build`.
-4. Commit the source changes and the updated `docs/` output.
-5. Push to GitHub.
+1. Edit source files in `src/` or `public/`.
+2. Validate changes with `npm run dev`.
+3. Rebuild the static output with `npm run build`.
+4. Commit both source updates and regenerated `docs/`.
+5. Push to `main`.
 
-GitHub Pages should point to:
+For GitHub Pages, the repository should publish from:
 
 - Branch: `main`
 - Folder: `/docs`
 
-## Repository structure
-
-- `[src/pages](c:/Users/jsgal/Documents/git/main/src/pages)`
-  - Astro page entry points
-
-- `[src/layouts](c:/Users/jsgal/Documents/git/main/src/layouts)`
-  - Shared page layouts
-
-- `[src/components](c:/Users/jsgal/Documents/git/main/src/components)`
-  - Reusable UI blocks
-
-- `[src/data](c:/Users/jsgal/Documents/git/main/src/data)`
-  - Structured content used by the pages
-
-- `[src/styles](c:/Users/jsgal/Documents/git/main/src/styles)`
-  - Source stylesheets
-
-- `[public](c:/Users/jsgal/Documents/git/main/public)`
-  - Static assets copied as-is to the final site
-
-- `[docs](c:/Users/jsgal/Documents/git/main/docs)`
-  - Generated production site for GitHub Pages
-
-## What to edit
-
-- Update text and links:
-  - `[site.js](c:/Users/jsgal/Documents/git/main/src/data/site.js)`
-
-- Change page structure:
-  - `[index.astro](c:/Users/jsgal/Documents/git/main/src/pages/index.astro)`
-
-- Change reusable UI:
-  - files in `[src/components](c:/Users/jsgal/Documents/git/main/src/components)`
-
-- Change the visual design:
-  - `[global.css](c:/Users/jsgal/Documents/git/main/src/styles/global.css)`
-
-- Change static images or icons:
-  - files in `[public](c:/Users/jsgal/Documents/git/main/public)`
-
 ## Notes
 
-- Edit `src/` and `public/`, not `docs/`.
-- Files inside `docs/_astro/` are generated build assets.
-- `outDir: "./docs"` is configured in `[astro.config.mjs](c:/Users/jsgal/Documents/git/main/astro.config.mjs)`.
+- Treat `docs/` as build output, not the primary editing surface.
+- Files inside `docs/_astro/` are generated assets.
+- The build output directory is configured in `astro.config.mjs`.

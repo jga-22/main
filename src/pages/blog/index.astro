@@ -1,17 +1,25 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import SiteNav from "../../components/SiteNav.astro";
-const base = import.meta.env.BASE_URL;
 
-const posts = [
-  {
-    title: "Life equilibrium",
-    href: `${base}blog/life-equilibrium/`,
-    date: "2026-04-03",
-    excerpt: "A short note on balancing ambition, attention, and the shape of a sustainable life."
-  }
-];
+const base = import.meta.env.BASE_URL;
+const categoryLabels = {
+  life: "Life",
+  technology: "Technology",
+  "work-experience": "Work experience"
+};
+
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .map((post) => ({
+    title: post.data.title,
+    href: `${base}blog/${post.slug}/`,
+    date: post.data.date.toISOString().slice(0, 10),
+    category: categoryLabels[post.data.category],
+    excerpt: post.data.excerpt
+  }));
 ---
 
 <BaseLayout title="Blog | Juan Galvis" description="Notes and essays by Juan Galvis.">
@@ -28,7 +36,7 @@ const posts = [
       <div class="blog-list">
         {posts.map((post) => (
           <a class="card card--link" href={post.href}>
-            <span class="card__meta">{post.date}</span>
+            <span class="card__meta">{post.category} · {post.date}</span>
             <h3>{post.title}</h3>
             <p>{post.excerpt}</p>
           </a>
