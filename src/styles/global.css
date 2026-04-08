@@ -301,8 +301,8 @@ html[data-theme="light"] .article__content blockquote {
 
 .hero__panel,
 /* .section, */
-.card,
-.article__content {
+/* .article__content, */
+.card{
   background:
     linear-gradient(180deg, var(--surface-strong), var(--surface)),
     var(--surface);
