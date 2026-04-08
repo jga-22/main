@@ -1,7 +1,11 @@
 ---
-import { siteMeta } from "../data/site.js";
+import ContactBar from "./ContactBar.astro";
+import { contactLinks, siteMeta } from "../data/site.js";
 ---
 
 <footer class="footer">
-  <p>{siteMeta.name}</p>
+  <div class="footer__inner brand-cluster">
+    <!-- <a class="brand">{siteMeta.name}</a> -->
+    <ContactBar items={contactLinks} compact={true} />
+  </div>
 </footer>

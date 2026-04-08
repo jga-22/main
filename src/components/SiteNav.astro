@@ -11,11 +11,54 @@ const sectionHref = (id) => (home ? `#${id}` : `${base}#${id}`);
 <nav class="topbar" aria-label="Primary">
   <div class="brand-cluster">
     <a class="brand" href={base}>{siteMeta.name}</a>
-    <ContactBar items={contactLinks} compact={true} />
   </div>
   <div class="topbar__links">
-    <!-- <a href={sectionHref("focus")}>Approach</a> -->
     <a href={`${base}blog/`}>Blog</a>
     <a href={sectionHref("background")}>Background</a>
+    <button class="theme-toggle" type="button" aria-label="Switch to white theme" aria-pressed="false">
+      <span class="theme-toggle__track" aria-hidden="true">
+        <span class="theme-toggle__thumb"></span>
+      </span>
+      <!-- <span class="theme-toggle__label">White</span> -->
+    </button>
   </div>
 </nav>
+
+<script>
+  const themeToggle = document.querySelector(".theme-toggle");
+
+  const setTheme = (theme) => {
+    const isLight = theme === "light";
+    if (isLight) {
+      document.documentElement.dataset.theme = "light";
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+    themeToggle?.setAttribute("aria-pressed", String(isLight));
+    themeToggle?.setAttribute("aria-label", isLight ? "Switch to black theme" : "Switch to white theme");
+  };
+
+  const getSavedTheme = () => {
+    try {
+      return localStorage.getItem("theme") === "light" ? "light" : "dark";
+    } catch {
+      return "dark";
+    }
+  };
+
+  setTheme(getSavedTheme());
+
+  themeToggle?.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    try {
+      if (nextTheme === "light") {
+        localStorage.setItem("theme", "light");
+      } else {
+        localStorage.removeItem("theme");
+      }
+    } catch {
+      // Keep the toggle usable even when persistent storage is unavailable.
+    }
+    setTheme(nextTheme);
+  });
+</script>

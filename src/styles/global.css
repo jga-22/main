@@ -1,10 +1,10 @@
 :root {
-  --bg: #040814;
-  --bg-deep: #02050d;
-  --surface: rgba(10, 18, 34, 0.72);
-  --surface-strong: rgba(13, 23, 44, 0.9);
-  --line: rgba(135, 173, 255, 0.16);
-  --line-strong: rgba(135, 173, 255, 0.28);
+  --bg: #000000;
+  --bg-deep: #000000;
+  --surface: rgba(7, 7, 7, 0.82);
+  --surface-strong: rgba(12, 12, 12, 0.94);
+  --line: rgba(255, 255, 255, 0.16);
+  --line-strong: rgba(255, 255, 255, 0.34);
   --text: #ebf2ff;
   --muted: #9db0d0;
   --accent: #79a8ff;
@@ -12,6 +12,21 @@
   --accent-glow: rgba(82, 229, 255, 0.24);
   --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
   font-size: 16px;
+}
+
+html[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-deep: #f5f7fb;
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-strong: rgba(255, 255, 255, 0.98);
+  --line: rgba(15, 23, 42, 0.14);
+  --line-strong: rgba(15, 23, 42, 0.28);
+  --text: #101624;
+  --muted: #516079;
+  --accent: #2458c7;
+  --accent-2: #008199;
+  --accent-glow: rgba(36, 88, 199, 0.14);
+  --shadow: 0 24px 72px rgba(15, 23, 42, 0.12);
 }
 
 * {
@@ -26,11 +41,7 @@ body {
   margin: 0;
   color: var(--text);
   font-family: "Inter", sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(92, 111, 255, 0.22), transparent 0 22rem),
-    radial-gradient(circle at 80% 10%, rgba(82, 229, 255, 0.16), transparent 0 18rem),
-    radial-gradient(circle at 50% 50%, rgba(37, 65, 120, 0.12), transparent 0 28rem),
-    linear-gradient(180deg, #050916 0%, #040814 45%, #02050d 100%);
+  background: var(--bg);
   min-height: 100vh;
 }
 
@@ -43,22 +54,11 @@ body::after {
 }
 
 body::before {
-  background-image:
-    radial-gradient(2px 2px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
-    radial-gradient(1px 1px at 24% 62%, rgba(255, 255, 255, 0.6), transparent),
-    radial-gradient(2px 2px at 68% 22%, rgba(121, 168, 255, 0.7), transparent),
-    radial-gradient(1px 1px at 82% 48%, rgba(255, 255, 255, 0.5), transparent),
-    radial-gradient(1px 1px at 44% 84%, rgba(82, 229, 255, 0.55), transparent),
-    radial-gradient(2px 2px at 92% 14%, rgba(255, 255, 255, 0.8), transparent);
-  opacity: 0.7;
+  display: none;
 }
 
 body::after {
-  background:
-    linear-gradient(rgba(121, 168, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(121, 168, 255, 0.06) 1px, transparent 1px);
-  background-size: 120px 120px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.36), transparent 70%);
+  display: none;
 }
 
 a {
@@ -105,6 +105,7 @@ a {
 .topbar__links {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1.25rem;
   color: var(--muted);
 }
@@ -112,6 +113,48 @@ a {
 .topbar__links a:hover,
 .brand:hover {
   color: var(--text);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0;
+  border: 0;
+  color: var(--muted);
+  font: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+}
+
+.theme-toggle__track {
+  width: 2.1rem;
+  height: 1.15rem;
+  padding: 0.16rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.theme-toggle__thumb {
+  display: block;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: var(--text);
+  transition: transform 0.2s ease;
+}
+
+.theme-toggle[aria-pressed="true"] .theme-toggle__thumb {
+  transform: translateX(0.92rem);
+}
+
+.theme-toggle__label {
+  font-size: 0.9rem;
 }
 
 .hero {
@@ -173,6 +216,13 @@ h3 {
   max-width: 38rem;
   margin: 1.5rem 0 0.9rem;
   color: #dfe9ff;
+}
+
+html[data-theme="light"] .hero__lede,
+html[data-theme="light"] .text-intro__body p,
+html[data-theme="light"] .article__excerpt,
+html[data-theme="light"] .article__content blockquote {
+  color: #263044;
 }
 
 .hero__body,
@@ -250,11 +300,11 @@ h3 {
 }
 
 .hero__panel,
-.section,
+/* .section, */
 .card,
 .article__content {
   background:
-    linear-gradient(180deg, rgba(17, 27, 51, 0.82), rgba(8, 15, 29, 0.84)),
+    linear-gradient(180deg, var(--surface-strong), var(--surface)),
     var(--surface);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -409,6 +459,11 @@ h3 {
   font-size: 0.88rem;
 }
 
+html[data-theme="light"] .tag-list li {
+  background: rgba(36, 88, 199, 0.08);
+  color: #263044;
+}
+
 .timeline {
   position: relative;
   display: grid;
@@ -450,6 +505,10 @@ h3 {
 .footer {
   padding: 2rem 0 0;
   text-align: center;
+}
+
+.footer__inner {
+  justify-content: center;
 }
 
 .article {

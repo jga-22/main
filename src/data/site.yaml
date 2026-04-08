@@ -1,6 +1,6 @@
 siteMeta:
   name: "Juan Galvis"
-  title: "Welcome to my crib"
+  title: "Hello !"
   description: "Personal website of Juan Galvis. Selected work, notes, and projects across AI products, digital strategy, and industrial systems."
   email: "js.galvis22@gmail.com"
   phone: "+33 06 50 34 13 77"
@@ -14,6 +14,9 @@ contactLinks:
   - label: "GitHub"
     href: "https://github.com/jga-22"
     icon: "github"
+  - label: "Substack"
+    href: "https://substack.com/@juangalvis1"
+    icon: "substack"
 
 hero:
   eyebrow: "Juan Galvis"
@@ -96,10 +99,14 @@ timelineSection:
   eyebrow: "Background"
 
 timeline:
+  - role: "Information technology Program Manager"
+    org: "Safran"
+    place: "Velizy, France"
+    period: "2025 - Present"
   - role: "AI Product Manager"
     org: "Safran"
     place: "Velizy, France"
-    period: "2024 - Present"
+    period: "2024 - 2026"
   - role: "Digital Manufacturing Product Manager"
     org: "Safran"
     place: "Velizy, France"
