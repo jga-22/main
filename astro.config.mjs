@@ -7,5 +7,4 @@ export default defineConfig({
   base: "/main",
   trailingSlash: "always",
   output: "static",
-  outDir: "./docs"
 });
