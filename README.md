@@ -16,7 +16,7 @@ Start the local development server:
 npm run dev
 ```
 
-Build the production site into `docs/`:
+Build the production site into `dist/`:
 
 ```powershell
 npm run build
@@ -66,7 +66,6 @@ Allowed categories are `life`, `technology`, and `work-experience`.
 - `src/content/`: blog content collections
 - `src/styles/`: global styling
 - `public/`: static assets copied directly to the build
-- `docs/`: generated site output for GitHub Pages
 
 ## Common edits
 
@@ -79,23 +78,25 @@ Allowed categories are `life`, `technology`, and `work-experience`.
 
 ## Publishing
 
-The repo is configured to publish the generated static output from `docs/`.
+The repository is configured to deploy with GitHub Actions on every push to `main`.
 
 Typical flow:
 
 1. Edit source files in `src/` or `public/`.
 2. Validate changes with `npm run dev`.
-3. Rebuild the static output with `npm run build`.
-4. Commit both source updates and regenerated `docs/`.
-5. Push to `main`.
+3. Commit source updates only.
+4. Push to `main`.
+5. GitHub Actions builds and deploys the site to GitHub Pages automatically.
 
 For GitHub Pages, the repository should publish from:
 
-- Branch: `main`
-- Folder: `/docs`
+- Source: `GitHub Actions`
+
+Workflow file:
+
+- `.github/workflows/deploy.yml`
 
 ## Notes
 
-- Treat `docs/` as build output, not the primary editing surface.
-- Files inside `docs/_astro/` are generated assets.
-- The build output directory is configured in `astro.config.mjs`.
+- Treat generated output as ephemeral build artifacts.
+- Files inside generated `dist/_astro/` assets are created by Astro at build time.
