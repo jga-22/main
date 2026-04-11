@@ -1,6 +1,7 @@
 ---
-const { items } = Astro.props;
-const { compact = false } = Astro.props;
+import { ui } from "../data/site.js";
+
+const { items, compact = false, ariaLabel = ui.labels.contactBar } = Astro.props;
 
 const icons = {
   linkedin:
@@ -12,7 +13,7 @@ const icons = {
 };
 ---
 
-<div class:list={["contact-bar", compact && "contact-bar--compact"]} aria-label="Contact">
+<div class:list={["contact-bar", compact && "contact-bar--compact"]} aria-label={ariaLabel}>
   {items.map((item) => (
     <a
       class="contact-bar__link"

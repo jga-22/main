@@ -2,21 +2,50 @@
 import BaseLayout from "./BaseLayout.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteNav from "../components/SiteNav.astro";
+import { siteMeta, ui } from "../data/site.js";
 
 const { frontmatter } = Astro.props;
-const title = `${frontmatter.title} | Juan Galvis`;
-const description = frontmatter.description ?? frontmatter.excerpt ?? "Blog post by Juan Galvis";
-const categoryLabels = {
-  life: "Life",
-  technology: "Technology",
-  "work-experience": "Work experience"
-};
+const base = import.meta.env.BASE_URL;
+const title = `${frontmatter.title} | ${siteMeta.name}`;
+const description = frontmatter.description ?? frontmatter.excerpt ?? ui.blog.postDescriptionFallback;
 const articleMeta = frontmatter.category
-  ? `${categoryLabels[frontmatter.category] ?? frontmatter.category} · ${frontmatter.date}`
+  ? `${ui.blog.categories[frontmatter.category] ?? frontmatter.category} \u00B7 ${frontmatter.date}`
   : frontmatter.date;
+const canonicalPath = Astro.url.pathname;
+const imagePath = frontmatter.ogImage ?? siteMeta.ogImage;
+const imageUrl = /^https?:\/\//.test(imagePath)
+  ? imagePath
+  : new URL(`${base}${imagePath.replace(/^\//, "")}`, Astro.site).toString();
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: frontmatter.title,
+  description,
+  datePublished: frontmatter.date,
+  dateModified: frontmatter.date,
+  url: new URL(canonicalPath, Astro.site).toString(),
+  author: {
+    "@type": "Person",
+    name: siteMeta.name
+  },
+  publisher: {
+    "@type": "Person",
+    name: siteMeta.name
+  },
+  image: imageUrl
+};
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  image={imagePath}
+  type="article"
+  publishedTime={frontmatter.date}
+  modifiedTime={frontmatter.date}
+  jsonLd={jsonLd}
+>
   <main class="page-shell page-shell--article">
     <SiteNav />
 

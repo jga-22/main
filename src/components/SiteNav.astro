@@ -1,6 +1,5 @@
 ---
-import ContactBar from "./ContactBar.astro";
-import { contactLinks, siteMeta } from "../data/site.js";
+import { siteMeta, ui } from "../data/site.js";
 
 const { home = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -13,9 +12,16 @@ const sectionHref = (id) => (home ? `#${id}` : `${base}#${id}`);
     <a class="brand" href={base}>{siteMeta.name}</a>
   </div>
   <div class="topbar__links">
-    <a href={`${base}blog/`}>Blog</a>
-    <a href={sectionHref("background")}>Background</a>
-    <button class="theme-toggle" type="button" aria-label="Switch to white theme" aria-pressed="false">
+    <a href={`${base}blog/`}>{ui.nav.blog}</a>
+    <a href={sectionHref("background")}>{ui.nav.background}</a>
+    <button
+      class="theme-toggle"
+      type="button"
+      aria-label={ui.nav.switchToLight}
+      aria-pressed="false"
+      data-theme-label-dark={ui.nav.switchToDark}
+      data-theme-label-light={ui.nav.switchToLight}
+    >
       <span class="theme-toggle__track" aria-hidden="true">
         <span class="theme-toggle__thumb"></span>
       </span>
@@ -29,13 +35,15 @@ const sectionHref = (id) => (home ? `#${id}` : `${base}#${id}`);
 
   const setTheme = (theme) => {
     const isLight = theme === "light";
+    const lightLabel = themeToggle?.dataset.themeLabelLight ?? "";
+    const darkLabel = themeToggle?.dataset.themeLabelDark ?? "";
     if (isLight) {
       document.documentElement.dataset.theme = "light";
     } else {
       document.documentElement.removeAttribute("data-theme");
     }
     themeToggle?.setAttribute("aria-pressed", String(isLight));
-    themeToggle?.setAttribute("aria-label", isLight ? "Switch to black theme" : "Switch to white theme");
+    themeToggle?.setAttribute("aria-label", isLight ? darkLabel : lightLabel);
   };
 
   const getSavedTheme = () => {

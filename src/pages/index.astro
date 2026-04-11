@@ -11,23 +11,35 @@ import {
   timelineSection,
   timeline
 } from "../data/site.js";
+const base = import.meta.env.BASE_URL;
+const ogImageUrl = new URL(`${base}${siteMeta.ogImage.replace(/^\//, "")}`, Astro.site).toString();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteMeta.name,
+  description: siteMeta.description,
+  image: ogImageUrl,
+  url: Astro.site?.toString(),
+  sameAs: [siteMeta.linkedin, siteMeta.github]
+};
 
 ---
 
-<BaseLayout title={`${siteMeta.name} | Personal website`} description={siteMeta.description}>
+<BaseLayout
+  title={`${siteMeta.name} | ${siteMeta.role}`}
+  description={siteMeta.description}
+  canonicalPath={Astro.url.pathname}
+  jsonLd={jsonLd}
+>
   <main class="page-shell">
-    <section class="hero">
-      <SiteNav home={true} />
+    <SiteNav home={true} />
 
+    <section class="hero">
       <div class="hero__grid">
         <div class="hero__title-wrap">
           <h1>{siteMeta.title}</h1>
         </div>
-
-        <!-- <div class="hero__copy">
-          <p class="hero__lede">{hero.headline}</p>
-          <p class="hero__body">{hero.body}</p>
-        </div> -->
 
       </div>
     </section>
@@ -37,21 +49,6 @@ import {
       body={personalIntro.body}
     />
 
-    <!-- <SectionBlock
-      id="focus"
-      eyebrow={focusSection.eyebrow}
-      title={focusSection.title}
-      intro={focusSection.intro}
-    >
-      <div class="grid grid--three">
-        {focusAreas.map((area) => (
-          <article class="card">
-            <h3>{area.title}</h3>
-            <p>{area.text}</p>
-          </article>
-        ))}
-      </div>
-    </SectionBlock> -->
 
     <SectionBlock
       id="background"

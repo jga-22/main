@@ -4,6 +4,7 @@ import rawSiteData from "./site.yaml?raw";
 const site = load(rawSiteData);
 
 export const siteMeta = site.siteMeta;
+export const ui = site.ui;
 export const contactLinks = site.contactLinks;
 export const hero = site.hero;
 export const personalIntro = site.personalIntro;

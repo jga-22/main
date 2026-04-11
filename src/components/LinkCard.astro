@@ -1,9 +1,11 @@
 ---
-const { label, href, description } = Astro.props;
+import { ui } from "../data/site.js";
+
+const { label, href, description, metaLabel = ui.labels.linkCardMeta } = Astro.props;
 ---
 
 <a class="card card--link" href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
-  <span class="card__meta">Link</span>
+  <span class="card__meta">{metaLabel}</span>
   <h3>{label}</h3>
   <p>{description}</p>
 </a>

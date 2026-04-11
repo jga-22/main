@@ -1,0 +1,64 @@
+:root {
+  --color-bg: #000000;
+  --color-bg-deep: #000000;
+  --color-surface: rgba(7, 7, 7, 0.82);
+  --color-surface-strong: rgba(12, 12, 12, 0.94);
+  --color-border: rgba(255, 255, 255, 0.16);
+  --color-border-strong: rgba(255, 255, 255, 0.34);
+  --color-text: #ebf2ff;
+  --color-text-muted: #9db0d0;
+  --color-text-soft: #dfe9ff;
+  --color-accent: #79a8ff;
+  --color-accent-strong: #52e5ff;
+  --color-accent-glow: rgba(82, 229, 255, 0.24);
+  --color-button-primary-start: rgba(121, 168, 255, 0.18);
+  --color-button-primary-end: rgba(82, 229, 255, 0.14);
+  --color-button-primary-ring: rgba(121, 168, 255, 0.14);
+  --color-button-primary-glow: rgba(82, 229, 255, 0.08);
+  --color-button-ghost-bg: rgba(255, 255, 255, 0.02);
+  --color-contact-border: rgba(135, 173, 255, 0.18);
+  --color-contact-border-subtle: rgba(135, 173, 255, 0.12);
+  --color-contact-hover-glow: rgba(82, 229, 255, 0.12);
+  --color-section-rule: rgba(82, 229, 255, 0.5);
+  --color-tag-border: rgba(135, 173, 255, 0.18);
+  --color-tag-bg: rgba(121, 168, 255, 0.08);
+  --color-tag-text: #d8e5ff;
+  --color-timeline-line: rgba(135, 173, 255, 0.22);
+  --color-dot-ring: rgba(82, 229, 255, 0.08);
+  --color-blockquote-border: rgba(82, 229, 255, 0.34);
+  --shadow-elevated: 0 28px 80px rgba(0, 0, 0, 0.42);
+  --shadow-card-hover: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(121, 168, 255, 0.05);
+  font-size: 16px;
+}
+
+html[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-bg-deep: #f5f7fb;
+  --color-surface: rgba(255, 255, 255, 0.92);
+  --color-surface-strong: rgba(255, 255, 255, 0.98);
+  --color-border: rgba(15, 23, 42, 0.14);
+  --color-border-strong: rgba(15, 23, 42, 0.28);
+  --color-text: #101624;
+  --color-text-muted: #516079;
+  --color-text-soft: #263044;
+  --color-accent: #2458c7;
+  --color-accent-strong: #008199;
+  --color-accent-glow: rgba(36, 88, 199, 0.14);
+  --color-button-primary-start: rgba(36, 88, 199, 0.12);
+  --color-button-primary-end: rgba(0, 129, 153, 0.12);
+  --color-button-primary-ring: rgba(36, 88, 199, 0.14);
+  --color-button-primary-glow: rgba(36, 88, 199, 0.08);
+  --color-button-ghost-bg: rgba(15, 23, 42, 0.03);
+  --color-contact-border: rgba(36, 88, 199, 0.16);
+  --color-contact-border-subtle: rgba(36, 88, 199, 0.12);
+  --color-contact-hover-glow: rgba(36, 88, 199, 0.12);
+  --color-section-rule: rgba(36, 88, 199, 0.28);
+  --color-tag-border: rgba(36, 88, 199, 0.16);
+  --color-tag-bg: rgba(36, 88, 199, 0.08);
+  --color-tag-text: #263044;
+  --color-timeline-line: rgba(36, 88, 199, 0.18);
+  --color-dot-ring: rgba(36, 88, 199, 0.08);
+  --color-blockquote-border: rgba(36, 88, 199, 0.28);
+  --shadow-elevated: 0 24px 72px rgba(15, 23, 42, 0.12);
+  --shadow-card-hover: 0 18px 48px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(36, 88, 199, 0.06);
+}

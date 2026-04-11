@@ -6,7 +6,8 @@ const blog = defineCollection({
     date: z.coerce.date(),
     category: z.enum(["life", "technology", "work-experience"]),
     excerpt: z.string(),
-    description: z.string().optional()
+    description: z.string().optional(),
+    ogImage: z.string().optional()
   })
 });
 

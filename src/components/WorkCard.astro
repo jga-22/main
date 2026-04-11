@@ -1,4 +1,6 @@
 ---
+import { ui } from "../data/site.js";
+
 const { title, period, summary, tags } = Astro.props;
 ---
 
@@ -6,7 +8,7 @@ const { title, period, summary, tags } = Astro.props;
   <div class="card__meta">{period}</div>
   <h3>{title}</h3>
   <p>{summary}</p>
-  <ul class="tag-list" aria-label={`${title} tags`}>
+  <ul class="tag-list" aria-label={`${title} ${ui.labels.workTagsSuffix}`}>
     {tags.map((tag) => <li>{tag}</li>)}
   </ul>
 </article>

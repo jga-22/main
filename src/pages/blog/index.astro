@@ -3,13 +3,9 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import SiteNav from "../../components/SiteNav.astro";
+import { siteMeta, ui } from "../../data/site.js";
 
 const base = import.meta.env.BASE_URL;
-const categoryLabels = {
-  life: "Life",
-  technology: "Technology",
-  "work-experience": "Work experience"
-};
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -17,26 +13,43 @@ const posts = (await getCollection("blog"))
     title: post.data.title,
     href: `${base}blog/${post.slug}/`,
     date: post.data.date.toISOString().slice(0, 10),
-    category: categoryLabels[post.data.category],
+    category: ui.blog.categories[post.data.category] ?? post.data.category,
     excerpt: post.data.excerpt
   }));
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: `${siteMeta.name} Blog`,
+  description: ui.blog.intro,
+  url: new URL(Astro.url.pathname, Astro.site).toString(),
+  publisher: {
+    "@type": "Person",
+    name: siteMeta.name
+  }
+};
 ---
 
-<BaseLayout title="Blog | Juan Galvis" description="Notes and essays by Juan Galvis.">
-  <main class="page-shell page-shell--article">
+<BaseLayout
+  title={`${ui.nav.blog} | ${siteMeta.name}`}
+  description={ui.blog.indexDescription}
+  canonicalPath={Astro.url.pathname}
+  jsonLd={jsonLd}
+>
+  <main class="page-shell page-shell--blog">
     <SiteNav />
 
-    <section class="section">
+    <section class="section section--flush">
       <div class="section__heading">
-        <p class="section__eyebrow">Blog</p>
-        <h1 class="article__title">Notes, essays, and working thoughts.</h1>
-        <p class="section__intro">A space for ideas that sit between work, systems, technology, and life.</p>
+        <p class="section__eyebrow">{ui.blog.eyebrow}</p>
+        <h1 class="article__title">{ui.blog.title}</h1>
+        <p class="section__intro">{ui.blog.intro}</p>
       </div>
 
       <div class="blog-list">
         {posts.map((post) => (
           <a class="card card--link" href={post.href}>
-            <span class="card__meta">{post.category} · {post.date}</span>
+            <span class="card__meta">{post.category} &middot; {post.date}</span>
             <h3>{post.title}</h3>
             <p>{post.excerpt}</p>
           </a>

@@ -2,10 +2,42 @@ siteMeta:
   name: "Juan Galvis"
   title: "Hello !"
   description: "Personal website of Juan Galvis. Selected work, notes, and projects across AI products, digital strategy, and industrial systems."
+  role: "Personal site"
+  locale: "en_US"
+  lang: "en"
+  keywords:
+    - "Juan Galvis"
+    - "AI product manager"
+    - "digital transformation"
+    - "industrial systems"
+    - "product strategy"
+    - "technology blog"
+  ogImage: "/JGA_Photo.png"
   email: "js.galvis22@gmail.com"
   phone: "+33 06 50 34 13 77"
   linkedin: "https://www.linkedin.com/in/juan-galvis-c"
   github: "https://github.com/jga-22"
+
+ui:
+  labels:
+    contactBar: "Contact"
+    linkCardMeta: "Link"
+    workTagsSuffix: "tags"
+  nav:
+    blog: "Blog"
+    background: "Background"
+    switchToLight: "Switch to white theme"
+    switchToDark: "Switch to black theme"
+  blog:
+    eyebrow: "Blog"
+    title: "Notes, essays, and working thoughts."
+    intro: "A space for ideas that sit between work, systems, technology, and life."
+    indexDescription: "Notes and essays by Juan Galvis."
+    postDescriptionFallback: "Blog post by Juan Galvis"
+    categories:
+      life: "Life"
+      technology: "Technology"
+      work-experience: "Work experience"
 
 contactLinks:
   - label: "LinkedIn"
