@@ -9,7 +9,25 @@ const sectionHref = (id) => (home ? `#${id}` : `${base}#${id}`);
 
 <nav class="topbar" aria-label="Primary">
   <div class="brand-cluster">
-    <a class="brand" href={base}>{siteMeta.name}</a>
+    <a class="brand" href={base}>
+      <span class="brand__logo" aria-hidden="true">
+        <img
+          class="brand__logo-image brand__logo-image--dark"
+          src={`${base}jg_logo_white_font_square.png`}
+          alt=""
+          width="36"
+          height="36"
+        />
+        <img
+          class="brand__logo-image brand__logo-image--light"
+          src={`${base}jg_logo_black_font_square.png`}
+          alt=""
+          width="36"
+          height="36"
+        />
+      </span>
+      <span>{siteMeta.name}</span>
+    </a>
   </div>
   <div class="topbar__links">
     <a href={`${base}blog/`}>{ui.nav.blog}</a>

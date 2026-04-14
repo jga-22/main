@@ -62,10 +62,38 @@ a {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.92rem;
+}
+
+.brand__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.brand__logo-image {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.brand__logo-image--light {
+  display: none;
+}
+
+:root[data-theme="light"] .brand__logo-image--dark {
+  display: none;
+}
+
+:root[data-theme="light"] .brand__logo-image--light {
+  display: block;
 }
 
 .topbar__links {
