@@ -6,86 +6,87 @@ excerpt: A reflection on my internship at Dassault Systèmes, where I built a vi
 description: Juan Galvis reflects on his Dassault Systèmes internship around the Poppy humanoid robot, covering a virtual twin on 3DEXPERIENCE, FMI co-simulation with Pypot, inverse kinematics, computer vision, and what a model can actually do.
 ---
 
-**Poppy** is a small open-source humanoid robot — modular, built for research, created at Inria. On its own, it is already interesting. What became interesting to me during my internship at **Dassault Systèmes** was what happened when you connected it to a virtual twin.
+**Poppy** is an open-source humanoid robot created at Inria. During my internship at **Dassault Systèmes**, I worked on a project around it, in collaboration with **ENSAM**.
 
-The project, carried out in collaboration with **ENSAM** and Dassault Systèmes, aimed to build a **virtual twin** of Poppy on the **3DEXPERIENCE platform** — not as a visualization, but as an operational layer that could support robot control, simulation, and interaction. A digital model that did things.
+The ambition was both technical and educational: to explore how the **3DEXPERIENCE platform** could help create a **virtual twin** of a robotic system, and how that twin could support design, control, simulation, and interaction.
 
-Getting there was more complicated than it sounds.
+Today, *digital twin* and *virtual twin* are everywhere. For me, back then, this was not a buzzword. It was the first time I could really see what it meant to build a bridge between the **physical world** and the **digital world**.
 
-## The virtual twin problem
+## A model that becomes operational
 
-Before this project, I understood digital twins conceptually. After it, I understood them operationally — which is a very different thing.
+Before this experience, like many engineering students, I saw models mostly as tools for analysis, design, or validation.
 
-The challenge is not building a 3D model of a robot. The challenge is making that model behave in a way that is actually useful: receiving commands, returning state, responding to the physical system, and doing all of this across software environments that were not designed to cooperate.
+This project pushed me to think differently. The virtual twin was not only there to represent the robot. It became part of the way we reasoned about movement, interaction, and system behavior. It connected what the robot **was** with what it **could do**.
 
-The solution involved **FMI — Functional Mock-up Interface** — a standard for co-simulation that allowed us to connect the 3DEXPERIENCE platform with the robot's actuators through Python tools like **Pypot**. On paper, it is an elegant idea. In practice, it means spending a lot of time understanding what each system expects, why data formats don't quite match, and what happens when latency or timing assumptions collide.
+A digital model is most powerful when it is treated not as static documentation but as something alive, something that can support decision-making, control, learning, and communication between systems and people.
 
-That kind of work teaches you things no course does. You learn where the abstraction ends and where the real engineering starts.
+## Two scenarios
 
-## Two scenarios, two different problems
+The project was built around two scenarios, and it combined robot control, computer vision, human-machine interaction, and co-simulation between software environments.
 
-The project was structured around two scenarios.
-
-**Poppy Parallel** focused on human-robot interaction. Different robot applications could be launched from a user interface, and the goal was to make the experience usable — not just functional, but observable and accessible to someone who is not writing the control code.
+**Poppy Parallel** focused on human-robot interaction, with different robot applications launched from a user interface.
 
 <iframe
   width="100%"
   height="450"
   src="https://www.youtube-nocookie.com/embed/BxSw8f7XwZM"
-  title="Poppy virtual twin demo"
+  title="Poppy Parallel demo"
   loading="lazy"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowfullscreen
 ></iframe>
 
-**Poppy Compliant** went deeper into the virtual twin for robotic control — using it to compute inverse kinematics and move the robot's hand to target positions, with a collision detection mechanism to protect both the robot and anyone nearby.
+**Poppy Compliant** aimed to take deeper advantage of the virtual twin for robotic control.
 
 <iframe
   width="100%"
   height="450"
   src="https://www.youtube-nocookie.com/embed/QzB83ilJz5w"
-  title="Poppy virtual twin demo"
+  title="Poppy Compliant demo"
   loading="lazy"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowfullscreen
 ></iframe>
 
-These two scenarios pulled in different directions. One asked: how do you design for a human user? The other asked: how do you make a model computationally useful? Working on both in parallel kept the project from becoming either purely a UI exercise or purely a control problem.
+## Control, vision, and interface
 
-## The computer vision part
+One part of the project focused on the **control system**. We worked on moving a point of the robot's hand to different positions, using the virtual twin to obtain inverse kinematics. A safety mechanism was also integrated to detect collisions and preserve the integrity of both the robot and the user.
 
-One of the more interesting pieces of work was the artificial vision module.
-
-The approach was color-based: detect an object by its hue, track its position in the camera frame, and use that information to drive robot behavior — the head following the object, the arm responding to its movement.
+Another part was **artificial vision**. We developed a color-based object recognition approach that enabled behaviors such as following an object with the head, and even using the detected object's movement to influence the position of the robot's arm.
 
 <iframe
   width="100%"
   height="450"
   src="https://www.youtube-nocookie.com/embed/fOy_PFRyhRk"
-  title="Poppy virtual twin demo"
+  title="Poppy computer vision demo"
   loading="lazy"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowfullscreen
 ></iframe>
 
-By today's standards, this is not sophisticated computer vision. But I think that is precisely what made it valuable as a learning experience. It forced me to think carefully about the right level of complexity for the objective — not the most impressive technique, but the one that actually integrated well into the rest of the system. Elegant engineering is not always about using the most advanced method. Sometimes it is about choosing the right level of intelligence and making it work reliably within the whole.
+This may sound simple compared with today's AI-heavy robotics landscape, but that is precisely why it was valuable. It taught me that elegant engineering is not always about using the most complex method. Sometimes it is about finding the right level of intelligence for the objective and integrating it well into the whole system.
 
-## What the co-simulation really revealed
+We also built a **human-robot interface** that let users launch applications and monitor variables linked to actuator performance. That mattered more than it might seem: advanced technology becomes truly meaningful when it is accessible, observable, and usable by humans.
 
-Of all the technical dimensions of this project, the FMI co-simulation work stayed with me the most.
+## Co-simulation
 
-Not because it was the hardest — though it was not easy — but because of what it showed about how engineering systems actually work when they have to cooperate.
+Finally, there was the **co-simulation** dimension. We used the **FMI (Functional Mock-up Interface)** concept to connect the 3DEXPERIENCE platform to the robot's actuators through Python tools such as **Pypot**.
 
-Most tools are designed in isolation. They make assumptions about their environment, their data formats, their timing. When you try to connect them, those assumptions collide. Making two systems talk to each other is really a negotiation between two different sets of invisible constraints.
+This was one of the most formative aspects of the project for me, because it showed how much value can be created when different tools are made to cooperate instead of remaining isolated.
 
-Getting the 3DEXPERIENCE platform and Pypot to exchange state through FMI meant understanding both systems well enough to broker that negotiation. It is slow, sometimes frustrating work. But it made me permanently interested in the question of **interoperability** — how tools can be made to cooperate without each one having to be redesigned from scratch.
+## Designing relationships
 
-That question has stayed relevant in every project I've worked on since.
+Looking back, the technical work was only part of the value. What I learned is that the future of engineering is not only about designing components. It is about designing **relationships**:
 
-## On models that do things
+- between real systems and virtual systems
+- between simulation and execution
+- between algorithms and interfaces
+- between technical rigor and human usability
 
-I came into this internship thinking of models mostly as representations: geometry, structure, behavior at rest. I left thinking of them as operational entities — things that participate in decisions.
+A robot is a physical object. But once you connect it to models, interfaces, control logic, and simulation environments, it becomes something larger: a system of systems.
 
-A virtual twin is not a picture of a robot. At its best, it is a reasoning layer: a way of predicting behavior, computing trajectories, exposing state, and bridging physical and digital logic. It changes what you can do without touching the hardware. It changes how you test, how you iterate, and how you share understanding across a team.
+That internship helped shape my long-term interest in **digital continuity**, **industrial transformation**, **AI systems**, and **architecture**. Even though my work has evolved since then, I can still see the continuity, and the questions it left me with are still the ones I work on:
 
-That shift in how I thought about models is probably what I've carried furthest from this experience. Not a specific technique. A different way of asking what a model is *for* — and what it could become if you treated it as something active rather than descriptive.
+How do we connect tools instead of fragmenting them?
+How do we make models useful beyond documentation?
+How do we design technology that is technically strong, but also operationally meaningful?
